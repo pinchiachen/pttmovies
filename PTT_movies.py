@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[29]:
-
 
 import requests
 from bs4 import BeautifulSoup
@@ -54,13 +52,7 @@ else:
   
 
 
-# In[ ]:
 
-
-get_ipython().system('jupyter nbconvert --to script Ptt_movies.ipynb')
-
-
-# In[ ]:
 
 
 
