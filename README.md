@@ -12,7 +12,7 @@ Demo
 ----
 <a href="https://imgur.com/DCWwXgR"><img src="https://i.imgur.com/DCWwXgR.png" title="source: imgur.com" /></a>
 
-備註
+Note
 ----
 1. 普好雷算入好雷，普負雷算入負雷。
 2. App.py 為主程式之 py 檔。
