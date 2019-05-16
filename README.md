@@ -19,4 +19,6 @@ Demo
 3. PTT_movies.py 為沒有串接 LineBot 之 py 檔，非必要。
 4. 將運算過程中需要安裝之模組加入 requirements.txt。
 
-Contact me : chenargar@gmail.com
+Contact me
+----
+chenargar@gmail.com
