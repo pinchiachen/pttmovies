@@ -6,7 +6,7 @@ How to use
 ----
 LINE 好友搜尋 ID：@vsr0046b，名稱為「鄉民怎麼看」，加入好友即可使用。
 
-D
+Demo
 ----
 ![image](https://github.com/pinchiachen/pttmovies/blob/master/S__14442609.png)
 
