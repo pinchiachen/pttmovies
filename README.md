@@ -8,7 +8,7 @@ LINE 好友搜尋 ID：@vsr0046b，名稱為「鄉民怎麼看」，加入好友
 
 Demo
 ----
-![image](https://imgur.com/DCWwXgR)
+![image](<a href="https://imgur.com/DCWwXgR"><img src="https://i.imgur.com/DCWwXgR.png" title="source: imgur.com" /></a>)
 
 備註
 ----
