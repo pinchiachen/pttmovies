@@ -19,10 +19,10 @@ Demo
 
 Note
 ----
-1. 普好雷算入好雷，普負雷算入負雷。
-2. App.py 為主程式之 py 檔。
-3. PTT_movies.py 為沒有串接 LineBot 之 py 檔，非必要。
-4. 將運算過程中需要安裝之模組加入 requirements.txt。
+- 普好雷算入好雷，普負雷算入負雷。
+- App.py 為主程式之 py 檔。
+- PTT_movies.py 為沒有串接 LineBot 之 py 檔，非必要。
+- 將運算過程中需要安裝之模組加入 requirements.txt。
 
 Contact me
 ----
