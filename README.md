@@ -1,29 +1,23 @@
 # LineBot_pttmovies
-====
 本程式用途為輸入電影名稱關鍵字後，利用該關鍵字在 PTT_Movie 網頁板進行搜尋，抓取最新 10 頁資料，分別統計好雷、普雷及負雷數目進行分析，得知該電影在  PTT_Movie 板之評價。
 
-Built With
-----
+## Built With
 - Python
 - Heroku
 
-How to use
-----
+## How to use
 LINE 好友搜尋 ID：@vsr0046b，名稱為「鄉民怎麼看」，加入好友即可使用。
 <br>或是透過以下 QR Code：<br>
 <a href="https://imgur.com/8ssvVd4"><img src="https://i.imgur.com/8ssvVd4.png" title="source: imgur.com" /></a>
 
-Demo
-----
+## Demo
 <a href="https://imgur.com/DCWwXgR"><img src="https://i.imgur.com/DCWwXgR.png" title="source: imgur.com" /></a>
 
-Note
-----
+## Note
 - 普好雷算入好雷，普負雷算入負雷。
 - App.py 為主程式之 py 檔。
 - PTT_movies.py 為沒有串接 LineBot 之 py 檔，非必要。
 - 將運算過程中需要安裝之模組加入 requirements.txt。
 
-Contact me
-----
+### Contact me
 chenargar@gmail.com
