@@ -38,9 +38,10 @@ def callback():
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
+    # 抓取使用者輸入的內容
     movie_name = event.message.text
     
-    #抓取前 10 頁所有文章標題
+    # 抓取前 10 頁所有文章標題
     title = []
     page_count = 10
     for i in range(page_count):   
@@ -49,13 +50,13 @@ def handle_message(event):
         for entry in soup.select('.r-ent'):
             title.append(entry.select('.title')[0].text)
 
-    #找出標題有'雷'且有']'且沒有'Re'之分類，刪除多於之空格
+    # 找出標題有'雷'且有']'且沒有'Re'之分類，刪除多於之空格
     title_index = []
     for i in range(len(title)-1, -1, -1):
         if '雷' in title[i] and ']' in title[i] and 'Re' not in title[i]:
             title_index.append(title[i].split(']', 1)[0].split('[', 1)[1].replace(' ',''))
 
-    #計算評價
+    # 計算評價
     good_count = 0
     ordinary_count = 0
     bad_count = 0
@@ -68,7 +69,7 @@ def handle_message(event):
         elif '普' in evaluation and '好'  not in evaluation and '爛'  not in evaluation and '負'  not in evaluation:
             ordinary_count += 1
 
-    #印出結果
+    # 印出結果
     total_count = good_count + ordinary_count + bad_count
     if total_count == 0:
         response = '查無資料'
