@@ -14,10 +14,11 @@ LINE 好友搜尋 ID：@vsr0046b，名稱為「鄉民怎麼看」，加入好友
 <a href="https://imgur.com/DCWwXgR"><img src="https://i.imgur.com/DCWwXgR.png" title="source: imgur.com" /></a>
 
 ## Note
+- 本程式部屬在 Heroku，要在本地端執行可以直接執行 PTT_movies.py。
 - 普好雷算入好雷，普負雷算入負雷。
 - App.py 為主程式之 py 檔。
 - PTT_movies.py 為沒有串接 LineBot 之 py 檔，非必要。
-- 將運算過程中需要安裝之模組加入 requirements.txt。
+- 將執行過程中需要安裝之模組加入 requirements.txt。
 
 ## Contact me
 chenargar@gmail.com
