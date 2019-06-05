@@ -3,6 +3,7 @@
 
 ## Built With
 - Python
+- Beautiful Soup
 - Heroku
 
 ## How to use
