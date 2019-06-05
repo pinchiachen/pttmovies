@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 movie_name = input("請輸入電影名稱關鍵字： ")
 
 
-#抓取最新10頁所有文章標題
+# 抓取最新10頁所有文章標題
 title = []
 for i in range(10):
     res = requests.get('https://www.ptt.cc/bbs/movie/search?page=%d&q=%s'%(i+1, movie_name))
@@ -18,14 +18,14 @@ for i in range(10):
         title.append(entry.select('.title')[0].text)
 
         
-#找出標題有'雷'且有']'且沒有'Re'之分類，刪除多於之空格
+# 找出標題有'雷'且有']'且沒有'Re'之分類，刪除多於之空格
 title_index = []
 for i in range(len(title)):
     if '雷' in title[i] and ']' in title[i] and 'Re' not in title[i]:
         title_index.append(title[i].split(']', 1)[0].split('[', 1)[1].replace(' ',''))
    
 
-#統計評價
+# 統計評價
 good_count = 0
 ordinary_count = 0
 bad_count = 0
@@ -39,7 +39,7 @@ for evaluation in title_index:
         ordinary_count += 1
 
         
-#印出結果
+# 印出結果
 total_count = good_count + ordinary_count + bad_count
 if total_count == 0:
     print('查無資料')
