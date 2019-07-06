@@ -1,7 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-
 import requests
 from bs4 import BeautifulSoup
 
@@ -12,8 +8,8 @@ movie_name = input("請輸入電影名稱關鍵字： ")
 # 抓取最新10頁所有文章標題
 title = []
 for i in range(10):
-    res = requests.get('https://www.ptt.cc/bbs/movie/search?page=%d&q=%s'%(i+1, movie_name))
-    soup = BeautifulSoup(res.text)
+    res = requests.get(f'https://www.ptt.cc/bbs/movie/search?page={i+1}&q={movie_name}')
+    soup = BeautifulSoup(res.text, features='lxml')
     for entry in soup.select('.r-ent'):
         title.append(entry.select('.title')[0].text)
 
@@ -47,7 +43,7 @@ else:
     good_percent = good_count / total_count * 100
     ordinary_percent = ordinary_count / total_count * 100
     bad_percent = bad_count / total_count * 100
-    print('評價總共有 %d 篇\n好雷有 %d 篇 / 好雷率為 %.2f %%\n普雷有 %d 篇 / 普雷率為 %.2f %%\n負雷有 %d 篇 / 負雷率為 %.2f %%'%(total_count, good_count, good_percent, ordinary_count, ordinary_percent, bad_count, bad_percent))
+    print(f'評價總共有 {total_count} 篇\n好雷有 {good_count} 篇 / 好雷率為 {good_percent:.2f} %%\n普雷有 {ordinary_count} 篇 / 普雷率為 {ordinary_percent:.2f} %%\n負雷有 {bad_count} 篇 / 負雷率為 {bad_percent:.2f} %%')
 
   
 
