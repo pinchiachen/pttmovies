@@ -1,5 +1,6 @@
 # LineBot PTT Movies
-本程式用途為輸入電影名稱關鍵字後，利用該關鍵字在 PTT_Movie 網頁板進行搜尋，抓取最新 10 頁資料，分別統計好雷、普雷及負雷數目進行分析，得知該電影在  PTT_Movie 板之評價。
+
+> *本程式用途為輸入電影名稱關鍵字後，利用該關鍵字在 PTT_Movie 網頁板進行搜尋，抓取最新 10 頁資料，分別統計好雷、普雷及負雷數目進行分析，得知該電影在  PTT_Movie 板之評價。*
 
 ## Built With
 - Python
@@ -23,4 +24,4 @@ LINE 好友搜尋 ID：@vsr0046b，名稱為「鄉民怎麼看」，加入好友
 - run_time.py 用來記錄爬蟲時間，以 decorator 的方式加在 PTT_movies.py 的主 function 上。
 
 ## Contact me
-chenargar@gmail.com
+- chenargar@gmail.com
