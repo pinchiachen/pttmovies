@@ -4,6 +4,7 @@ from run_time import calculate_run_time
 
 PAGE_LIMIT = 10
 BASE_URL = 'https://www.ptt.cc/bbs/movie/search'
+DEFAULT_RESULT_MSG = '查無資料'
 
 def get_target_url(page, name):
     return (
@@ -24,13 +25,11 @@ def crawl_article_titles(movie_name):
     return titles
 
 def get_target_tags(titles = []):
-    tags = []
-
-    for title in titles:
-        if is_title_valid(title):
-            tags.append(trim_title(title))
-
-    return tags
+    return [
+        trim_title(title)
+        for title in titles
+        if is_title_valid(title)
+    ]
 
 def is_title_valid(title = ''):
     return (
@@ -41,7 +40,12 @@ def is_title_valid(title = ''):
     )
 
 def trim_title(title = ''):
-    return title.split(']', 1)[0].split('[', 1)[1].replace(' ', '')
+    return (
+        title
+        .split(']', 1)[0]
+        .split('[', 1)[1]
+        .replace(' ', '')
+    )
 
 def is_tag_good(tag = ''):
     return ('好' in tag)
@@ -75,19 +79,39 @@ def calculate_tags(tags = []):
     return (good_count, ordinary_count, bad_count, total_count)
 
 def get_result_msg(good_count, ordinary_count, bad_count, total_count):
-    msg = '查無資料'
+    msg = DEFAULT_RESULT_MSG
 
     if total_count > 0:
         good_percent = (good_count / total_count) * 100
         ordinary_percent = (ordinary_count / total_count) * 100
         bad_percent = (bad_count / total_count) * 100
-        msg = (
-            f'評價總共有 {total_count} 篇\n好雷有 {good_count} 篇 / 好雷率為 {good_percent:.2f} %%\n'
-            f'普雷有 {ordinary_count} 篇 / 普雷率為 {ordinary_percent:.2f} %%\n'
-            f'負雷有 {bad_count} 篇 / 負雷率為 {bad_percent:.2f} %%'
+        
+        msg = get_msg_content(
+            total_count,
+            good_count,
+            good_percent,
+            ordinary_count,
+            ordinary_percent,
+            bad_count,
+            bad_percent,
         )
 
     return msg
+
+def get_msg_content(
+    total_count,
+    good_count,
+    good_percent,
+    ordinary_count,
+    ordinary_percent,
+    bad_count,
+    bad_percent,
+):
+    return (
+        f'評價總共有 {total_count} 篇\n好雷有 {good_count} 篇 / 好雷率為 {good_percent:.2f} %%\n'
+        f'普雷有 {ordinary_count} 篇 / 普雷率為 {ordinary_percent:.2f} %%\n'
+        f'負雷有 {bad_count} 篇 / 負雷率為 {bad_percent:.2f} %%'
+    )
 
 @calculate_run_time
 def main():
