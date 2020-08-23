@@ -16,12 +16,11 @@
 <a href="https://imgur.com/DCWwXgR"><img src="https://i.imgur.com/DCWwXgR.png" title="source: imgur.com" /></a>
 
 ## Note
-- 本程式部屬在 Heroku，要在本地端執行可以直接執行 PTT_movies.py。
+- 本程式部屬在 Heroku，要在本地端運行可以直接執行 ptt_movies.py。
 - 普好雷算入好雷，普負雷算入負雷。
-- App.py 為部屬在 Heroku 上執行主程式之 py 檔。
-- PTT_movies.py 為沒有串接 LineBot 之 py 檔，非必要。
+- app.py 為部屬在 Heroku 上執行主程式之 py 檔。
 - 將執行過程中需要安裝之模組加入 requirements.txt。
-- run_time.py 用來記錄爬蟲時間，以 decorator 的方式加在 PTT_movies.py 的主 function 上。
+- run_time.py 用來記錄爬蟲時間，以 decorator 的方式使用。
 
 ## Contact me
 - chenargar@gmail.com
