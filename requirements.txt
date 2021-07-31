@@ -1,0 +1,7 @@
+line-bot-sdk
+
+flask
+beautifulsoup4
+requests
+urllib3
+lxml
