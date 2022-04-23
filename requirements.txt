@@ -1,6 +1,6 @@
 line-bot-sdk
 flask
-beautifulsoup4
+bs4
 requests
 urllib3
 lxml
