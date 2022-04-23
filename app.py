@@ -140,8 +140,10 @@ def handle_message(event):
     movie_name = event.message.text
 
     titles = crawl_article_titles(movie_name, DEAFULT_PAGE_LIMIT)
+    print(f'titles: {titles}')
 
     title_tags = get_target_tags(titles)
+    print(f'title_tags: {title_tags}')
 
     (
         good_count,
@@ -149,6 +151,10 @@ def handle_message(event):
         bad_count,
         total_count,
     ) = calculate_tags(title_tags)
+    print(f'good_count: {good_count}')
+    print(f'ordinary_count: {ordinary_count}')
+    print(f'bad_count: {bad_count}')
+    print(f'total_count: {total_count}')
 
     line_bot_api.reply_message(
         event.reply_token,
