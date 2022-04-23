@@ -138,6 +138,7 @@ def callback():
 @handler.add(MessageEvent, message = TextMessage)
 def handle_message(event):
     movie_name = event.message.text
+    print(f'movie_name: {movie_name}')
 
     titles = crawl_article_titles(movie_name, DEAFULT_PAGE_LIMIT)
     print(f'titles: {titles}')
