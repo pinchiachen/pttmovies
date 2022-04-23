@@ -9,7 +9,7 @@ DEFAULT_RESULT_MSG = '查無資料'
 def get_target_url(page, name):
     return (
         f'{BASE_URL}?page={page}&q={name}'
-        if page and name 
+        if page and name
         else BASE_URL
     )
 
@@ -85,7 +85,7 @@ def get_result_msg(good_count, ordinary_count, bad_count, total_count):
         good_percent = (good_count / total_count) * 100
         ordinary_percent = (ordinary_count / total_count) * 100
         bad_percent = (bad_count / total_count) * 100
-        
+
         msg = get_msg_content(
             total_count,
             good_count,

@@ -1,22 +1,13 @@
-from flask import Flask, request, abort
-
-from linebot import (
-    LineBotApi, WebhookHandler
-)
-from linebot.exceptions import (
-    InvalidSignatureError
-)
-from linebot.models import *
-
-import requests
 import os
+import requests
+from flask import Flask, request, abort
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
+from linebot.models import MessageEvent, TextSendMessage, TextMessage
 from bs4 import BeautifulSoup
 
 app = Flask(__name__)
-
-# Channel Access Token
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
-# Channel Secret
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
 
 BASE_URL = 'https://www.ptt.cc/bbs/movie/search'
@@ -26,7 +17,7 @@ DEFAULT_RESPONSE = '查無資料'
 def get_target_url(page, name):
     return (
         f'{BASE_URL}?page={page}&q={name}'
-        if page and name 
+        if page and name
         else BASE_URL
     )
 
@@ -35,7 +26,7 @@ def crawl_article_titles(movie_name, max_page):
 
     for page in range(1, max_page + 1):
         res = requests.get(get_target_url(page, movie_name))
-        soup = BeautifulSoup(res.text, features='lxml')
+        soup = BeautifulSoup(res.text, features = 'lxml')
         for entry in soup.select('.r-ent'):
             titles.append(entry.select('.title')[0].text)
 
@@ -65,10 +56,10 @@ def trim_title(title = ''):
     )
 
 def is_tag_good(tag = ''):
-    return ('好' in tag)
+    return '好' in tag
 
 def is_tag_bad(tag = ''):
-    return (('爛' in tag) or ('負' in tag))
+    return ('爛' in tag) or ('負' in tag)
 
 def is_tag_ordinary(tag = ''):
     return (
@@ -102,7 +93,7 @@ def get_response_msg(good_count, ordinary_count, bad_count, total_count):
         good_percent = (good_count / total_count) * 100
         ordinary_percent = (ordinary_count / total_count) * 100
         bad_percent = (bad_count / total_count) * 100
-        
+
         msg = get_msg_content(
             total_count,
             good_count,
@@ -125,12 +116,12 @@ def get_msg_content(
     bad_percent,
 ):
     return (
-        f'評價總共有 {total_count} 篇\n好雷有 {good_count} 篇 / 好雷率為 {good_percent:.2f} %%\n'
-        f'普雷有 {ordinary_count} 篇 / 普雷率為 {ordinary_percent:.2f} %%\n'
-        f'負雷有 {bad_count} 篇 / 負雷率為 {bad_percent:.2f} %%'
+        f'評價總共有 {total_count} 篇\n好雷有 {good_count} 篇 / 好雷率為 {good_percent:.2f} %\n'
+        f'普雷有 {ordinary_count} 篇 / 普雷率為 {ordinary_percent:.2f} %\n'
+        f'負雷有 {bad_count} 篇 / 負雷率為 {bad_percent:.2f} %'
     )
 
-@app.route("/callback", methods=['POST'])
+@app.route("/callback", methods = ['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
@@ -144,7 +135,7 @@ def callback():
         abort(400)
     return 'OK'
 
-@handler.add(MessageEvent, message=TextMessage)
+@handler.add(MessageEvent, message = TextMessage)
 def handle_message(event):
     movie_name = event.message.text
 
@@ -161,9 +152,14 @@ def handle_message(event):
 
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text = get_response_msg(good_count, ordinary_count, bad_count, total_count)),
+        TextSendMessage(text = get_response_msg(
+            good_count,
+            ordinary_count,
+            bad_count,
+            total_count,
+        )),
     )
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(host = '0.0.0.0', port = port)
