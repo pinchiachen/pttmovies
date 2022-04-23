@@ -1,5 +1,4 @@
 import os
-# import requests
 import cloudscraper
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
@@ -27,10 +26,8 @@ def crawl_article_titles(movie_name, max_page):
     titles = []
 
     for page in range(1, max_page + 1):
-        # res = requests.get(get_target_url(page, movie_name))
         res = scraper.get(get_target_url(page, movie_name))
         soup = BeautifulSoup(res.text, 'html.parser')
-        print(soup.prettify())
         for entry in soup.select('.r-ent'):
             titles.append(entry.select('.title')[0].text)
 
@@ -142,13 +139,10 @@ def callback():
 @handler.add(MessageEvent, message = TextMessage)
 def handle_message(event):
     movie_name = event.message.text
-    print(f'movie_name: {movie_name}')
 
     titles = crawl_article_titles(movie_name, DEAFULT_PAGE_LIMIT)
-    print(f'titles: {titles}')
 
     title_tags = get_target_tags(titles)
-    print(f'title_tags: {title_tags}')
 
     (
         good_count,
@@ -156,10 +150,6 @@ def handle_message(event):
         bad_count,
         total_count,
     ) = calculate_tags(title_tags)
-    print(f'good_count: {good_count}')
-    print(f'ordinary_count: {ordinary_count}')
-    print(f'bad_count: {bad_count}')
-    print(f'total_count: {total_count}')
 
     line_bot_api.reply_message(
         event.reply_token,
