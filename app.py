@@ -27,7 +27,7 @@ def crawl_article_titles(movie_name, max_page):
     for page in range(1, max_page + 1):
         res = requests.get(get_target_url(page, movie_name))
         soup = BeautifulSoup(res.text, 'html.parser')
-        print(f'soup: {soup}')
+        print(soup.prettify())
         for entry in soup.select('.r-ent'):
             titles.append(entry.select('.title')[0].text)
 
