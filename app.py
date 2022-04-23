@@ -1,5 +1,6 @@
 import os
-import requests
+# import requests
+import cloudscraper
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
@@ -9,6 +10,7 @@ from bs4 import BeautifulSoup
 app = Flask(__name__)
 line_bot_api = LineBotApi(os.environ['CHANNEL_ACCESS_TOKEN'])
 handler = WebhookHandler(os.environ['CHANNEL_SECRET'])
+scraper = cloudscraper.create_scraper()
 
 BASE_URL = 'https://www.ptt.cc/bbs/movie/search'
 DEAFULT_PAGE_LIMIT = 10
@@ -25,7 +27,8 @@ def crawl_article_titles(movie_name, max_page):
     titles = []
 
     for page in range(1, max_page + 1):
-        res = requests.get(get_target_url(page, movie_name))
+        # res = requests.get(get_target_url(page, movie_name))
+        res = scraper.get(get_target_url(page, movie_name))
         soup = BeautifulSoup(res.text, 'html.parser')
         print(soup.prettify())
         for entry in soup.select('.r-ent'):
