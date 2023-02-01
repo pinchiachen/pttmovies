@@ -5,4 +5,3 @@ requests
 urllib3
 lxml
 cloudscraper
-gunicorn
