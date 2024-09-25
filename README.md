@@ -1,6 +1,10 @@
 # LineBot PTT Movies
 
-> *本程式用途為輸入電影名稱關鍵字後，利用該關鍵字在 PTT_Movie 網頁板進行搜尋，抓取最新 10 頁資料，分別統計好雷、普雷及負雷數目進行分析，得知該電影在  PTT_Movie 板之評價。*
+> *因為 Heroku 沒有免費方案了，所以用 Node.js 重新寫了一個 V2 版本，並且部屬在 Vercel 上。*
+> *V2 版本連結：https://github.com/pinchiachen/ptt-movie-bot*
+
+## Description
+本程式用途為輸入電影名稱關鍵字後，利用該關鍵字在 PTT_Movie 網頁板進行搜尋，抓取最新 10 頁資料，分別統計好雷、普雷及負雷數目進行分析，得知該電影在  PTT_Movie 板之評價。
 
 ## Built With
 - Python
